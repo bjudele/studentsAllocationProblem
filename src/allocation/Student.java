@@ -2,17 +2,21 @@ package allocation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Student {
 
   private String name;
   private int yearOfStudy;
   private List<Project> preferredProjects;
+  private Long CNP;
+  private Project allocatedProject;
 
-  public Student(String name, int yearOfStudy) {
+  public Student(String name, int yearOfStudy, Long CNP) {
     this.name = name;
     this.yearOfStudy = yearOfStudy;
     this.preferredProjects = new ArrayList<>();
+    this.CNP = CNP;
   }
 
   public void addProject(Project app) {
@@ -36,6 +40,18 @@ public class Student {
     this.yearOfStudy = yearOfStudy;
   }
 
+  public List<Project> getPreferredProjects() {
+    return preferredProjects;
+  }
+
+  public Project getAllocatedProject() {
+    return allocatedProject;
+  }
+
+  public void setAllocatedProject(Project allocatedProject) {
+    this.allocatedProject = allocatedProject;
+  }
+
   @Override
   public String toString() {
     String result = "\nSunt studentul " + name
@@ -48,5 +64,23 @@ public class Student {
       }
     }
     return result;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Student student = (Student) o;
+    return Objects.equals(CNP, student.CNP);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(CNP);
   }
 }

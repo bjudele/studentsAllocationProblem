@@ -8,10 +8,10 @@ public class Main {
   public static void main(String[] args) {
 
     // Create students
-    Student s1 = new Student("S1", 2);
-    Student s2 = new Student("S2", 2);
-    Student s3 = new Student("S3", 2);
-    Student s4 = new Student("S4", 2);
+    Student s1 = new Student("S1", 2, 1L);
+    Student s2 = new Student("S2", 2, 2L);
+    Student s3 = new Student("S3", 2, 3L);
+    Student s4 = new Student("S4", 2, 4L);
 
     // Create projects
     Project a1 = new Application("A1", LocalDate.of(2019, Month.JUNE, 1),
@@ -20,19 +20,41 @@ public class Main {
         Language.JAVA);
     Project a3 = new Application("A3", LocalDate.of(2019, Month.JUNE, 1),
         Language.JAVA);
-    Project e1 = new Essay("E1", LocalDate.parse("2019-06-01"), Topic.ALGORITHMS);
 
-    // Adding preferred projects to students
+    Project e1 = new Essay("E1", LocalDate.parse("2019-06-01"), Topic.ALGORITHMS);
+    Project e2 = new Essay("E2", LocalDate.parse("2019-06-04"), Topic.ALGORITHMS);
+   // Adding preferred projects to students
     s1.addProject(a1);
     s1.addProject(a2);
     s1.addProject(a3);
     s2.addProject(a1);
     s2.addProject(e1);
+    s3.addProject(a2);
+    s3.addProject(a3);
+    s3.addProject(e1);
+
+    s4.addProject(a3);
+    s4.addProject(e2);
 
     // Ading preferred students to projects
-    a1.addStudent(s1);
     a1.addStudent(s2);
+    a1.addStudent(s1);
     a1.addStudent(s3);
+
+    a2.addStudent(s1);
+    a2.addStudent(s4);
+    a2.addStudent(s3);
+
+    a3.addStudent(s3);
+    a3.addStudent(s4);
+
+    e1.addStudent(s3);
+    e1.addStudent(s2);
+
+
+    e2.addStudent(s4);
+    e2.addStudent(s1);
+
 
     // Creating the problem and adding the data: students and projects
     Problem problem = new Problem();
@@ -45,6 +67,7 @@ public class Main {
     problem.addProject(a2);
     problem.addProject(a3);
     problem.addProject(e1);
+    problem.addProject(e2);
 
     // Displaying everything to the console (implicit toString() call)
     System.out.println(problem);

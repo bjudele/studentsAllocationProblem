@@ -10,6 +10,9 @@ public abstract class Project {
   private LocalDate deadline;
   private List<Student> preferredStudents;
 
+
+  private Student allocatedStudent;
+
   public Project(String name, LocalDate deadline) {
     this.name = name;
     this.deadline = deadline;
@@ -36,6 +39,14 @@ public abstract class Project {
     this.preferredStudents.add(student);
   }
 
+  public Student getAllocatedStudent() {
+    return allocatedStudent;
+  }
+
+  public void setAllocatedStudent(Student allocatedStudent) {
+    this.allocatedStudent = allocatedStudent;
+  }
+
   @Override
   public String toString() {
     String result = "\nSunt proiectul " + name
@@ -48,5 +59,17 @@ public abstract class Project {
       }
     }
     return result;
+  }
+
+  public boolean prefersFirstOverSecond(Student firstStudent, Student secondStudent) {
+    for (Student student : preferredStudents) {
+      if (student.equals(firstStudent)) {
+        return true;
+      }
+      if (student.equals(secondStudent)) {
+        return false;
+      }
+    }
+    throw new IllegalArgumentException();
   }
 }
